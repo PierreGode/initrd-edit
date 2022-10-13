@@ -52,15 +52,7 @@ else
     echo "your extracterd initrd is in /tmp/inittmp/ "
     echo ""
 fi
-read -r -p "Return to menu (y/n)?" yn
- case $yn in 
-[Yy]* ) MENU_FN
-;;
-[Nn]* ) exit
-        ;;
-    * ) echo 'Please answer yes or no.';;
-   esac
-exit                                                                                                       
+return                                                                                                      
 }
 
 recreate()
@@ -84,17 +76,7 @@ find kernel -print0 | cpio --null --create --format=newc >> /tmp/inittmp/newinit
                                                                               
 cd ../main                                                                    
 find . | cpio --create --format=newc | xz --format=lzma >> /tmp/inittmp/newinitrd 
-                                                                              
-read -r -p "Return to menu (y/n)?" yn
- case $yn in 
-[Yy]* ) MENU_FN
-;;
-[Nn]* ) exit
-        exit
-        ;;
-    * ) echo 'Please answer yes or no.';;
-   esac
-exit        
+return     
 }
 
 binwalkinitrd()
@@ -117,16 +99,7 @@ exit
 Checkfile()
 {
 file initrd
-read -r -p "Return to menu (y/n)?" yn
- case $yn in 
-[Yy]* ) MENU_FN
-;;
-[Nn]* ) exit
-        exit
-        ;;
-    * ) echo 'Please answer yes or no.';;
-   esac
-exit    
+return
 }
 PRECHECK()
 {
@@ -144,6 +117,19 @@ echo "if the extracted folders has an empty main folder i can be because you the
 ehco "If so please boot to a system that have a match version as the initrd"
 echo "you can not extract an ubuntu 20 initrd in a ubuntu 22 server/client"
 exit
+}
+return()
+{
+read -r -p "Return to menu (y/n)?" yn
+ case $yn in 
+[Yy]* ) MENU_FN
+;;
+[Nn]* ) exit
+        exit
+        ;;
+    * ) echo 'Please answer yes or no.';;
+   esac
+exit    
 }
 ############################################## Menu #####################################
 MENU_FN(){
