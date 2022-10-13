@@ -52,7 +52,7 @@ else
     echo "your extracterd initrd is in /tmp/inittmp/ "
     echo ""
 fi
-return                                                                                                      
+return_FN                                                                                                      
 }
 
 recreate()
@@ -76,7 +76,7 @@ find kernel -print0 | cpio --null --create --format=newc >> /tmp/inittmp/newinit
                                                                               
 cd ../main                                                                    
 find . | cpio --create --format=newc | xz --format=lzma >> /tmp/inittmp/newinitrd 
-return     
+return_FN     
 }
 
 binwalkinitrd()
@@ -85,21 +85,12 @@ binwalkinitrd()
 binwalk initrd
 #binwalk newinitrd                                                           
 binwalk newinitrd 
-read -r -p "Return to menu (y/n)?" yn
- case $yn in 
-[Yy]* ) MENU_FN
-;;
-[Nn]* ) exit
-        exit
-        ;;
-    * ) echo 'Please answer yes or no.';;
-   esac
-exit                                                            
+return_FN                                    
 }
 Checkfile()
 {
 file initrd
-return
+return_FN
 }
 PRECHECK()
 {
@@ -118,7 +109,7 @@ ehco "If so please boot to a system that have a match version as the initrd"
 echo "you can not extract an ubuntu 20 initrd in a ubuntu 22 server/client"
 exit
 }
-return()
+return_FN()
 {
 read -r -p "Return to menu (y/n)?" yn
  case $yn in 
