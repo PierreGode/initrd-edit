@@ -81,6 +81,11 @@ return_FN
 
 binwalkinitrd()
 {
+if ! dpkg -l binwalk
+then
+sudo apt-get install binwalk
+clear
+fi
 #binwalk initrd 
 binwalk initrd
 #binwalk newinitrd                                                           
