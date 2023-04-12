@@ -2,7 +2,7 @@
 
 So first things first, I have no Idea what I am doing.
 
-This scripts works fine to extract and packege the initrd file within a mounted ubuntu iso.
+This scripts works fine to extract and package the initrd file within a mounted ubuntu iso.
 
 backround for the creation of this is that I have an ipxe server and needed to deploy Ubuntu 20 on laptops, the laptops a thin and has no 
 ethernet ports, so they need an lan to usb-c adapter, ipxe have the support for that and gets so far as downloading the initrd and vmlinz 
