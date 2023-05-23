@@ -1,14 +1,14 @@
-# initrd-edit
+Ubuntu initrd Modification Script
+This script is a utility designed to extract, modify, and recreate the initial ramdisk (initrd) file within an Ubuntu operating system. The initrd contains a temporary root filesystem loaded into memory during system boot. This filesystem includes essential drivers and tools that the system uses to mount the actual root filesystem.
 
-So first things first, I have no Idea what I am doing.
+<H3>How it Works</H3>
+The script extracts the initrd file, allowing you to insert needed drivers into the appropriate directories, and then repacks the initrd for booting. The drivers should be placed in the /lib/modules/<kernel_version>/kernel/drivers/net/usb directory within the extracted initrd file structure.
 
-This scripts works fine to extract and package the initrd file within a mounted ubuntu iso.
+<H3>Usage</H3>
+The script presents an interactive menu guiding you through the processes of extracting an existing initrd file, creating a new initrd from the extracted content, and checking the file. Please ensure that the initrd file you wish to modify resides in the same directory as the script before running it.
 
-backround for the creation of this is that I have an ipxe server and needed to deploy Ubuntu 20 on laptops, the laptops a thin and has no 
-ethernet ports, so they need an lan to usb-c adapter, ipxe have the support for that and gets so far as downloading the initrd and vmlinz 
-from a mounted live server iso.
-but when the laptop loads those files and tryes to "boot" from them it fails to detect network interfaces.(ubuntu 22 works)
+<H3>Caution</H3>
+Please note that the modifications performed by this script require a deep understanding of the Linux boot process and device drivers. Always test the modifications in a controlled environment before deploying them in a live setting. Be aware that inserting kernel modules and modifying initrd can significantly affect the boot process and the stability of the system.
 
-I am trying to load the RTL8152 and RTL8153 .ko files in to the (with this script) extracted /lib/modules/version0.0.0.something/kernel/drivers/net/usb
-by just placing the files there, and then again with this scripts package a new working initrd file, the initrd boots up and fails at 
-detecting network card.
+<H3>Contribution</H3>
+Contributions and improvements to the script are always welcome. Please make sure to test the changes thoroughly before submitting a pull request.
